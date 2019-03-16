@@ -12,13 +12,12 @@
           v-text-field(class="purple-input search-input" label="Search..." color="purple")
         v-list-tile(v-for="(link, i) in links" :key="i" :to="link.to" active-class="red" avatar class="v-list-item")
           v-list-tile-action
-          v-icon 
+          v-icon
             | {{link.icon}}
           v-list-tile-title(v-text="link.text")
         v-list-tile(disabled active-class="primary" class="v-list-item v-list__tile--buy" to="/upgrade")
         v-list-tile-action
           v-icon mdi-packgage-up
-            
 </template>
 <script>
 // Utilities

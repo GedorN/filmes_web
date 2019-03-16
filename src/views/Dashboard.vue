@@ -2,29 +2,17 @@
 v-container(fill-height fluid grid-list-xl)
     v-layout(wrap)
         v-flex(md12 sm12 lg4)
-            material-chart-card(:data='dailySalesChart.data', :options='dailySalesChart.options', color='info', type='Line')
-                h4.title.font-weight-light Daily Sales
-                p.category.d-inline-flex.font-weight-light
-                    v-icon(color='green', small='') mdi-arrow-up
-                    span.green--text 55%
-                    |  increase in today's sales
-                template(slot='actions')
-                    v-icon.mr-2(small='') mdi-clock-outline
-                    span.caption.grey--text.font-weight-light updated 4 minutes ago
-        //- v-flex(md12='', sm12='', lg4='')
-            material-chart-card(:data='emailsSubscriptionChart.data', :options='emailsSubscriptionChart.options', :responsive-options='emailsSubscriptionChart.responsiveOptions', color='red', type='Bar')
-                h4.title.font-weight-light Email Subscription
-                p.category.d-inline-flex.font-weight-light Last Campaign Performance
-                template(slot='actions')
-                    v-icon.mr-2(small='') mdi-clock-outline
-                    span.caption.grey--text.font-weight-light updated 10 minutes ago
+            material-chart-card(:data='dailySalesChart.data', :options='dailySalesChart.options', color='red', type='Line')
+                h4.title.font-weight-light Filmes assistidos
+                //- colocar último filme asssistido
+                p.category.d-inline-flex.font-weight-light Preencher
+
         v-flex(md12='', sm12='', lg4='')
-            material-chart-card(:data='dataCompletedTasksChart.data', :options='dataCompletedTasksChart.options', color='green', type='Line')
-                h3.title.font-weight-light Completed Tasks
-                p.category.d-inline-flex.font-weight-light Last Last Campaign Performance
-                template(slot='actions')
-                    v-icon.mr-2(small='') mdi-clock-outline
-                    span.caption.grey--text.font-weight-light campaign sent 26 minutes ago
+            material-chart-card(:data='dataCompletedTasksChart.data', :options='dataCompletedTasksChart.options', color='green', type='Bar')
+                h3.title.font-weight-light Categorias mais assistidas
+                //- colocar última categoria assistida
+                p.category.d-inline-flex.font-weight-light Preencher
+
         v-flex(sm6='', xs12='', md6='', lg3='')
             material-stats-card(color='green', icon='mdi-store', title='Revenue', value='$34,245', sub-icon='mdi-calendar', sub-text='Last 24 Hours')
         v-flex(sm6='', xs12='', md6='', lg3='')
@@ -103,9 +91,7 @@ v-container(fill-height fluid grid-list-xl)
                                                 v-btn.v-btn--simple(slot='activator', color='danger', icon='')
                                                     v-icon(color='error') mdi-close
                                                 span Close
-
 </template>
-
 <script>
 export default {
   data () {
@@ -133,9 +119,9 @@ export default {
       },
       dataCompletedTasksChart: {
         data: {
-          labels: ['12am', '3pm', '6pm', '9pm', '12pm', '3am', '6am', '9am'],
+          labels: ['Drama', '3pm', '6pm', '9pm', '12pm', '3am', '6am', '9am', '5612'],
           series: [
-            [230, 750, 450, 300, 280, 240, 200, 190]
+            [230, 750, 450, 300, 280, 240, 200, 190, 500]
           ]
         },
         options: {
@@ -143,7 +129,7 @@ export default {
             tension: 0
           }),
           low: 0,
-          high: 1000, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+          high: 800, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
           chartPadding: {
             top: 0,
             right: 0,
@@ -151,38 +137,6 @@ export default {
             left: 0
           }
         }
-      },
-      emailsSubscriptionChart: {
-        data: {
-          labels: ['Ja', 'Fe', 'Ma', 'Ap', 'Mai', 'Ju', 'Jul', 'Au', 'Se', 'Oc', 'No', 'De'],
-          series: [
-            [542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895]
-
-          ]
-        },
-        options: {
-          axisX: {
-            showGrid: false
-          },
-          low: 0,
-          high: 1000,
-          chartPadding: {
-            top: 0,
-            right: 5,
-            bottom: 0,
-            left: 0
-          }
-        },
-        responsiveOptions: [
-          ['screen and (max-width: 640px)', {
-            seriesBarDistance: 5,
-            axisX: {
-              labelInterpolationFnc: function (value) {
-                return value[0]
-              }
-            }
-          }]
-        ]
       },
       headers: [
         {
