@@ -1,38 +1,43 @@
 <template lang="pug">
 v-container(fill-height fluid grid-list-xl)
     v-layout(wrap)
-        v-flex(md12 sm12 lg4)
-            material-chart-card(:data='dailySalesChart.data', :options='dailySalesChart.options', color='red', type='Line')
-                h4.title.font-weight-light Filmes assistidos
-                //- colocar último filme asssistido
-                p.category.d-inline-flex.font-weight-light Preencher
 
-        v-flex(md12='', sm12='', lg4='')
+        v-flex(md12 sm12 lg6 xl4)
+          material-chart-card(:data='dailySalesChart.data', :options='dailySalesChart.options', color='red', type='Line')
+              h4.title.font-weight-light Filmes assistidos
+              //- colocar último filme asssistido
+              p.category.d-inline-flex.font-weight-bold Último filme assistido:
+              p.category.d-inline-flex.font-weight-light &nbsp Título
+
+        v-flex(md12 sm12 lg6 xl4)
             material-chart-card(:data='dataCompletedTasksChart.data', :options='dataCompletedTasksChart.options', color='green', type='Bar')
                 h3.title.font-weight-light Categorias mais assistidas
                 //- colocar última categoria assistida
-                p.category.d-inline-flex.font-weight-light Preencher
+                p.category.d-inline-flex.font-weight-bold Última categoria assistida:
+                p.category.d-inline-flex.font-weight-light &nbsp Categoria
 
-        v-flex(sm6='', xs12='', md6='', lg3='')
-            material-stats-card(color='green', icon='mdi-store', title='Revenue', value='$34,245', sub-icon='mdi-calendar', sub-text='Last 24 Hours')
-        v-flex(sm6='', xs12='', md6='', lg3='')
-            material-stats-card(color='orange', icon='mdi-content-copy', title='Used Space', value='49/50', small-value='GB', sub-icon='mdi-alert', sub-icon-color='error', sub-text='Get More Space...', sub-text-color='text-primary')
-        v-flex(sm6='', xs12='', md6='', lg3='')
-            material-stats-card(color='red', icon='mdi-information-outline', title='Fixed Issues', value='75', sub-icon='mdi-tag', sub-text='Tracked from Github')
-        v-flex(sm6='', xs12='', md6='', lg3='')
-            material-stats-card(color='info', icon='mdi-twitter', title='Followers', value='+245', sub-icon='mdi-update', sub-text='Just Updated')
-        v-flex(md12='', lg6='')
-            material-card(color='orange', title='Employee Stats', text='New employees on 15th September, 2016')
-                v-data-table(:headers='headers', :items='items', hide-actions='')
+        v-flex(sm6 xs12 md6 lg12 xl4)
+          material-stats-card(color='red', icon='fa fa-film', title='Filme com maior nota', value='Média de quanto gostamos', sub-icon='fa fa-calendar-alt', sub-text='Quando assistimos')
+          v-divider(dark style='margin-bottom: 5.5vh;')
+          material-stats-card(color='green', icon='fa fa-chart-pie', title='Categoria com maior nota', value='Média de quanto gostamos', sub-icon='fa fa-list-ol', sub-text='Quantos filmes assistimos')
+          v-divider(dark style='margin-bottom: 5.5vh;')
+          material-stats-card(color='orange', icon='mdi-content-copy', title='Filmes assistidos / Desejados', value='49/50' sub-icon='fa fa-tasks', sub-text='Porcentagem assisitda')
+        //- v-flex(sm6 xs12 md6 lg6 xl4)
+          material-stats-card(color='red', icon='mdi-information-outline', title='Último filme assistido', value='gasdhaslgd', sub-icon='mdi-tag', sub-text='Tracked from Github')
+
+        v-flex(md12, lg12)
+            material-card(color='orange', title='Filmes assistidos', text='Lista com os últimos filmes assistidos')
+                v-data-table(:headers='headers', :items='items', hide-actions)
                     template(slot='headerCell', slot-scope='{ header }')
                         span.font-weight-light.text-warning.text--darken-3(v-text='header.text')
                     template(slot='items', slot-scope='{ index, item }')
-                        | {{ index + 1 }}
-                        | {{ item.name }}
-                        | {{ item.salary }}
-                        | {{ item.country }}
-                        | {{ item.city }}
-        v-flex(md12='', lg6='')
+                        td(center) {{ index + 1 }}
+                        td(center) {{ item.name }}
+                        td(class="text-xs-right") {{ item.salary }}
+                        td(class="text-xs-right") {{ item.country }}
+                        td(class="text-xs-right") {{ item.city }}
+
+        //- v-flex(md12='', lg6='')
             material-card.card-tabs(color='green')
                 v-flex(slot='header')
                     v-tabs(v-model='tabs', color='transparent', slider-color='white')
@@ -98,9 +103,9 @@ export default {
     return {
       dailySalesChart: {
         data: {
-          labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+          labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
           series: [
-            [200, 217, 227, 217, 223, 218, 238]
+            [2, 17, 2, 7, 3, 8, 23]
           ]
         },
         options: {
@@ -108,7 +113,7 @@ export default {
             tension: 0
           }),
           low: 0,
-          high: 500, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+          high: 30, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
           chartPadding: {
             top: 0,
             right: 0,
@@ -212,3 +217,5 @@ export default {
   }
 }
 </script>
+<style>
+</style>

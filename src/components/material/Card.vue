@@ -1,56 +1,18 @@
-<template>
-  <v-card
-    v-bind="$attrs"
-    :style="styles"
-    v-on="$listeners"
-  >
-    <helper-offset
-      v-if="hasOffset"
-      :inline="inline"
-      :full-width="fullWidth"
-      :offset="offset"
-    >
-      <v-card
-        v-if="!$slots.offset"
-        :color="color"
-        :class="`elevation-${elevation}`"
-        class="v-card--material__header"
-        dark
-      >
-        <slot
-          v-if="!title && !text"
-          name="header"
-        />
-        <span v-else>
-          <h4
-            class="title font-weight-light mb-2"
-            v-text="title"
-          />
-          <p
-            class="category font-weight-thin"
-            v-text="text"
-          />
-        </span>
-      </v-card>
-      <slot
-        v-else
-        name="offset"
-      />
-    </helper-offset>
+<template lang="pug">
+  v-card(v-bind='$attrs', :style='styles', v-on='$listeners')
+    helper-offset(v-if='hasOffset', :inline='inline', :full-width='fullWidth', :offset='offset')
+      v-card.v-card--material__header(v-if='!$slots.offset', :color='color', :class='`elevation-${elevation}`', dark='')
+        slot(v-if='!title && !text', name='header')
+        span(v-else='')
+          h4.title.font-weight-light.mb-2(v-text='title')
+          p.category.font-weight-thin(v-text='text')
+      slot(v-else='', name='offset')
+    v-card-text
+      slot
+    v-divider.mx-3(v-if='$slots.actions')
+    v-card-actions(v-if='$slots.actions')
+      slot(name='actions')
 
-    <v-card-text>
-      <slot />
-    </v-card-text>
-
-    <v-divider
-      v-if="$slots.actions"
-      class="mx-3"
-    />
-
-    <v-card-actions v-if="$slots.actions">
-      <slot name="actions" />
-    </v-card-actions>
-  </v-card>
 </template>
 
 <script>

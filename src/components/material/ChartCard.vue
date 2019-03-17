@@ -1,26 +1,9 @@
-<template>
-  <material-card
-    v-bind="$attrs"
-    class="v-card--material-chart"
-    v-on="$listeners"
-  >
-    <chartist
-      slot="header"
-      :data="data"
-      :event-handlers="eventHandlers"
-      :options="options"
-      :ratio="ratio"
-      :responsive-options="responsiveOptions"
-      :type="type"
-    />
+<template lang="pug">
+  material-card.v-card--material-chart(v-bind='$attrs', v-on='$listeners')
+    chartist(slot='header', :data='data', :event-handlers='eventHandlers', :options='options', :ratio='ratio', :responsive-options='responsiveOptions', :type='type')
+    slot
+    slot(slot='actions', name='actions')
 
-    <slot />
-
-    <slot
-      slot="actions"
-      name="actions"
-    />
-  </material-card>
 </template>
 
 <script>
@@ -59,6 +42,7 @@ export default {
 
 <style lang="scss">
   .v-card--material-chart {
+    // height: 100%;
     .v-card--material__header {
       .ct-label {
         color: inherit;
